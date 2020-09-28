@@ -19,6 +19,7 @@ import org.cirdles.topsoil.Variable;
 import org.cirdles.topsoil.data.DataColumn;
 import org.cirdles.topsoil.data.DataTable;
 import org.cirdles.topsoil.data.TableUtils;
+import org.cirdles.topsoil.javafx.bridges.Circle;
 import org.cirdles.topsoil.javafx.bridges.Regression;
 import org.cirdles.topsoil.plot.DataEntry;
 import org.cirdles.topsoil.plot.HTMLTemplate;
@@ -67,6 +68,7 @@ public class PlotView extends SingleChildRegion<WebView> implements Plot {
     private JSObject topsoil;
     private PlotBridge javaBridge;
     private Regression regressionBridge;
+    private Circle circleBridge;
 
     //**********************************************//
     //                  PROPERTIES                  //
@@ -127,6 +129,7 @@ public class PlotView extends SingleChildRegion<WebView> implements Plot {
 
         this.javaBridge = new PlotBridge(this);
         this.regressionBridge = new Regression();
+        this.circleBridge = new Circle(20);
 
         this.plotType = type;
         this.htmlString = HTMLTemplate.withRootDiv();
@@ -173,6 +176,7 @@ public class PlotView extends SingleChildRegion<WebView> implements Plot {
                         );
                         topsoil.setMember("javaBridge", javaBridge);
                         topsoil.setMember("regressionBridge", regressionBridge);
+                        topsoil.setMember("circleBridge", circleBridge);
 
                         if (isCustomViewport) {
                             call(PlotFunction.Scatter.SET_AXIS_EXTENTS,
